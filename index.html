@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samantha Reily - Accessibility Analyst</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        nav {
+            background: #333;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 50px;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #bbb;
+            color: #333;
+        }
+
+        .linkedin-link {
+            margin-right: 50px;
+        }
+
+        .linkedin-link a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .linkedin-link a:hover {
+            color: #bbb;
+        }
+
+        .linkedin-link img {
+            width: 24px;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url("accessheroimage.jpg") no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero h1,
+        .hero p {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            filter: blur(15px);
+            transition: opacity 1.5s ease, filter 1.5s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            padding: 80px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .accessibility-image {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .accessibility-image img {
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .accessibility-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .accessibility-text h2 {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .accessibility-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #555;
+        }
+
+        .services {
+            padding: 80px 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2;
+            position: relative;
+        }
+
+        .services-header {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .services-description {
+            flex: 2;
+            min-width: 300px;
+            color: #333;
+        }
+
+        .services-description p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .services-items {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            z-index: 2;
+            position: relative;
+        }
+
+        .service-item {
+            background-color: rgba(220, 220, 220, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            color: #333;
+            min-width: 300px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .service-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .service-item p {
+            font-size: 1.2rem;
+        }
+
+        .service-item:hover {
+            background-color: #e3eff0;
+            color: #fff;
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+
+        .contact-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: left;
+            width: 100%;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: border 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #333;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        .submit-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+
+        footer p {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+
+        footer p span {
+            font-size: 1.2rem;
+            color: red;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            .services-items {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-left: 10px;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .linkedin-link {
+                margin-right: 10px;
+            }
+
+            .services-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="linkedin-link">
+            <a href="https://www.linkedin.com/in/samantha-reily-45839232a" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+            </a>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div>
+            <h1>Samantha Reily</h1>
+            <p>Accessibility Analyst & Accessibility Advocate</p>
+        </div>
+    </section>
+
+    <section id="accessibility" class="accessibility-section">
+        <div class="accessibility-image">
+            <img src="allaboutimage.png" alt="All About People Image">
+        </div>
+        <div class="accessibility-text">
+            <h2>Accessibility – Connecting People and Technology</h2>
+            <p>
+                Accessibility is not just about compliance; it's about people. It's about ensuring that everyone, regardless of their abilities, can engage with your digital content. 
+            </p>
+            <p>
+                My role as an Accessibility Analyst is to guide businesses in making their websites, apps, and digital platforms user-friendly and compliant with legal standards like the ADA and WCAG. 
+                With proper accessibility measures, we can break down barriers and create a seamless digital experience for all.
+            </p>
+            <p>
+                Accessibility is a continuous journey. As technology evolves, so should our efforts to make it accessible. Let's work together to create a world where digital spaces are open and welcoming to all.
+            </p>
+            <a href="about.html" class="learn-more-btn">Learn More</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="services-content">
+            <div class="services-header">
+                <h2>Bringing Accessibility to Your Digital Presence</h2>
+            </div>
+            <div class="services-description">
+                <p>
+                    I offer a comprehensive range of services focused on ensuring that digital platforms are accessible and compliant with legal standards. 
+                    Whether it's ensuring websites meet accessibility regulations or providing in-depth audits, my goal is to help businesses foster inclusivity. 
+                    Accessibility isn't just a requirement; it's an opportunity to create better digital experiences for all users. Let me guide you through 
+                    making your online spaces more user-friendly and welcoming to everyone.
+                </p>
+            </div>
+        </div>
+
+        <div class="services-items" style="margin-top: 40px;">
+            <div class="service-item">
+                <h3>Legal Compliance</h3>
+                <p>Ensuring that websites and digital platforms adhere to legal standards and regulations, including accessibility laws such as the ADA and WCAG, 
+                to protect businesses and provide equitable digital experiences for all users.</p>
+            </div>
+            <div class="service-item">
+                <h3>Accessibility Audits</h3>
+                <p>Providing detailed audits to ensure that websites and applications meet accessibility standards for all users.</p>
+            </div>
+            <div class="service-item">
+                <h3>Consulting</h3>
+                <p>Offering expert advice on web accessibility, user experience, and front-end development strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Let's Connect!</h2>
+        <p>
+            If you have any questions or just want to say hi, feel free to reach out. I'd love to hear from you and talk more about how I can help with your accessibility needs. Fill out the form below, and I’ll get back to you as soon as possible!
+        </p>
+        <form action="https://formsubmit.co/samanthareily054@gmail.com" method="POST">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+         
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+         
+            <label for="subject">Subject</label> 
+            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+         
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+         
+            <button type="submit" class="submit-button">Send Message</button>
+         </form>  
+       
+         <div id="thankYouMessage" style="display: none; margin-top: 20px; color: green; font-size: 1.2rem;">
+            Thank you! Your submission has been received.
+        </div> 
+
+    </section>
+
+    <footer>
+        <p>Powered by <span>&hearts;</span>. All rights reserved. © 2024 Lauren Oliver</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('load', function() {
+            const heroText = document.querySelector('.hero');
+            heroText.querySelector('h1').style.opacity = "1";
+            heroText.querySelector('h1').style.filter = "blur(0)";
+            heroText.querySelector('p').style.opacity = "1";
+            heroText.querySelector('p').style.filter = "blur(0)";
+        });
+
+        function showThankYouMessage(event) {
+            event.preventDefault(); // Prevents the default form submission
+            document.getElementById('thankYouMessage').style.display = 'block';
+
+            // Send the form data if needed
+            event.target.submit();
+        }
+    </script>
+
+</body>
+</html>
